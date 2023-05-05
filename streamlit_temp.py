@@ -8,24 +8,24 @@ import shap
 
 def score_text(score):
     if score == 0:
-        return "0 – 5 : Never going to watch it", "visuals/emojis/emoji1.png"
+        return "0 – 5 : Never going to watch it", "streamlit_visuals_needed/emojis/emoji1.png"
     elif score == 1:
-        return "5 – 6.5 : If there’s nothing else on", "visuals/emojis/emoji2.png"
+        return "5 – 6.5 : If there’s nothing else on", "streamlit_visuals_needed/emojis/emoji2.png"
     elif score == 2:
-        return "6.5 – 7.5 : Might be interested", "visuals/emojis/emoji3.png"
+        return "6.5 – 7.5 : Might be interested", "streamlit_visuals_needed/emojis/emoji3.png"
     elif score == 3:
-        return "7.5 – 8.5 : Great content", "visuals/emojis/emoji4.png"
+        return "7.5 – 8.5 : Great content", "streamlit_visuals_needed/emojis/emoji4.png"
     elif score == 4:
-        return "8.5+ : Excellent, potentially all-time great content", "visuals/emojis/emoji5.png"
+        return "8.5+ : Excellent, potentially all-time great content", "streamlit_visuals_needed/emojis/emoji5.png"
 
 
 def main():
     st.set_page_config(page_title="Movie & TV Show IMDB Rating Predictor", layout="wide")
-    st.image("StreamOracle_logo.png", width=1250)
+    st.image("streamlit_visuals_needed/StreamOracle_logo.png", width=1200)
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("Select an option to see the predicted IMDB rating and votes")
+        st.subheader("Select an option (from this list of completely made up movies/TV shows) to see the predicted IMDB rating and votes")
 
     with col2:
         additional_info_df = pd.read_csv('data/Actual_movie_show_info.csv')
