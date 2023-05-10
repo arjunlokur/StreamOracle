@@ -1,5 +1,11 @@
 # StreamOracle
 
+## [Demo] (https://arjunlokur-capstone-streamlit-app-u5vk3q.streamlit.app/)
+
+
+[![StreamOracle](streamlit_visuals_needed/StreamOracle_logo.png)](https://arjunlokur-capstone-streamlit-app-u5vk3q.streamlit.app/)
+
+
 ## Overview:
 This project aims to predict the quality and popularity for a movie or TV show, based on features like the cast, plot summary, genres etc. The intent is to help streaming platforms decide whether or not to greenlight/acquire a new piece of content. The quality and popularity are measured by IMDB rating and number of IMDB votes respectively. (Note that this project is relatively unique because there’s 2 target variables.)
 
