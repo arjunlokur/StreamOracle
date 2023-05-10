@@ -7,13 +7,56 @@
 
 
 ## Overview:
-This project aims to predict the quality and popularity for a movie or TV show, based on features like the cast, plot summary, genres etc. The intent is to help streaming platforms decide whether or not to greenlight/acquire a new piece of content. The quality and popularity are measured by IMDB rating and number of IMDB votes respectively. (Note that this project is relatively unique because there’s 2 target variables.)
 
-This is important because streaming companies are under a lot of financial pressure in 2023. Netflix hit its all-time market cap high in Nov 2021 (\$314 Bn) driven by pandemic-related lockdowns but has since plummeted to $145 Bn. It’s facing subscriber loss and has announced plans to launch a lower-priced, ad-supported tier. Part of the reason is more competition in a now-crowded streaming space. Another reason is that companies (across the tech sector) bet on pandemic-era trends being more permanent, which didn’t necessarily happen.
-Whatever the reasons, streamers now have a much smaller margin for error in their selection of projects. This project aims to help them make better decisions.
+I love watching movies and TV shows, constantly on the lookout for what to watch next. And there seems to be no shortage on content across the streaming platforms. This is because the top 5 streaming companies spend over $140 billion annually onncontent. Not all of it works out though, and the reality for streaming companies is different in 2023 - with a lot more competition in the space, subscriber loss and stock prices down from their pandemic highs. That’s why they have a smaller margin for error today.
+
+The goal of this project is to help streamers predict the success of a potential piece of content, using data such as the cast, the plot description, the title, genre etc. This can help them decide whether or not to product/acquire the content in the first place. The ‘success’ being measured here is twofold - the IMDB rating (a measure of quality) and the number of IMDB votes (a measure of popularity).
+
+This is a multi-facted data science project, involving feature engineering, Natural Language Processing (NLP) and machine learning.
 
 ## Background on the subject matter:
 Given the right data, it would be entirely possible to predict the success of a movie or TV show. Studios are already doing this - have a look at this Verge article about [LA based start-up Cinelytic](https://www.theverge.com/2019/5/28/18637135/hollywood-ai-film-decision-script-analysis-data-machine-learning) that is advising Hollywood on which movies to make.
+
+## Background of the data:
+
+The primary dataset was put together by Kaggle contributor Shivam Bansal. He scraped the website Flixable – (a content search engine of sorts) – to put together title and credits information for all the content on Netflix, HBOMax, Prime Video and Disney Plus. All links to the datasets are at the bottom of this file. The below image is an example of some of the key features for the movie 'The Departed'
+
+
+![The_Departed](streamlit_visuals_needed/The_Departed_slide.png)
+
+
+The cast in this instance had every single actor/actress in the movie, right from the superstars to the 150th person who was there for 2 seconds.
+
+## Feature Engineering:
+
+Extracting actor Value from Credits table: 
+a)	I wanted to identify ‘superstars’ because logically, the popularity of a title increases with the presence of a superstar. To do this, I saw that the actor names in the credits table, for a given title, were listed in order of importance. I then ranked the cast for each movie based on this order, which leads us to our formula for value:
+
+b)	Formula for Value: 
+
+![formula](streamlit_visuals_needed/formula.png)
+
+
+This captures the actors and actresses who’ve been in a lot of movies and were the most important actors for that movie. It does a reasonable job of capturing superstars. I created cut-off values to classify the actors into 4 different categories with the following count:
+
+![star_pyramid](streamlit_visuals_needed/star_pyramid.png)
+
+
+This distribution makes sense, because Superstars should be the rarest. The ‘Other_Actors’ is counting the number of ‘extras’ in a movie or TV show.  It’s a useful measure of the scale of a movie - a big budget production like ‘Gladiator’ will have many more extras than a smaller arthouse film.  
+
+![star_pyramid](streamlit_visuals_needed/popularity_increase_stars.png)
+
+
+The above chart tells us that in general, adding ‘superstars’ (as captured by my metric) to a movie/show increases its popularity. The median value of number of votes (which is the line dividing all the boxes in the middle) trends upwards with number of superstars, peaking at 3.
+
+
+## NLP:
+
+There were 2 features - Title & Description on which I applied Count Vectorizer, and in an alternate attempt also tried Word Embeddings. Here is an example of the most frequent 2-word combinations from the Description column.
+
+![top_bigrams](streamlit_visuals_needed/top_bigrams_description.png)
+
+
 
 ## Notebooks:
 
