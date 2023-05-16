@@ -74,7 +74,7 @@ And for the IMDB votes, the original distribution was extremely right-skewed. Du
 
 I initiually tried a variety of models on both target variable, from basic linear models to KNN, to neural networks to ensemble learning.
 
-![initial_results](initial_results.png)
+![initial_results](streamlit_visuals_needed/initial_results.png)
 
 XGBoost was the best performing model, so I applied a grid search for hyperparameter tuning. The fully tuned models yielded the below scores, with their respective improvements over the baseline. The baseline r2 score for the IMDB votes was a basic linear regression model. And the baseline accuracy for IMDB rating was the frequency of the most frequent class.
 
