@@ -34,10 +34,10 @@ a)	I wanted to identify ‘superstars’ because logically, the popularity of a 
 
 b)	Formula for Value: 
 
-![formula](streamlit_visuals_needed/formula.png)
+![formula](streamlit_visuals_needed/formula.pdf)
 
 
-This captures the actors and actresses who’ve been in a lot of movies and were the most important actors for that movie. It does a reasonable job of capturing superstars. I created cut-off values to classify the actors into 4 different categories with the following count:
+This captures the actors and actresses who’ve been in a lot of movies (that are available on these streaming platforms) and were the most important actors for that movie. It does a reasonable job of capturing superstars. I created cut-off values to classify the actors into 4 different categories with the following count:
 
 ![star_pyramid](streamlit_visuals_needed/star_pyramid.png)
 
@@ -56,6 +56,42 @@ There were 2 features - Title & Description on which I applied Count Vectorizer,
 
 ![top_bigrams](streamlit_visuals_needed/top_bigrams_description.png)
 
+These tell us a lot about what kinds of plots/storylines are the most popular. 'new york', for example, is a very popular setting for movies. 'small town' speaks to specific type of movies (think Hallmark movies). The most frequent one, 'year old' is there because of the way many plot descriptions talk about their protagonist - for example 'a 50 year old woman embarks on a journey...'
+
+And this word cloud below shows us the most popular genres.
+
+![word_cloud](word_cloud.png)
+
+## Target Variable Modification:
+
+Before we get into the modeling results, there's 2 modifications of the target variables I'd like to highlight. For IMDB rating, I turned it into a multi-class classification problem with the below classes. As I realized the exact rating value number doesn't matter. We (as potential consumers of content) think of ratings in approximately these ranges, when evaluating whether to stream something or not.
+
+And for the IMDB votes, the original distribution was extremely right-skewed. Due to which I took the natural log tranformation to make it a more normal distribution, which will help at least the linear models.
+
+![target_modification](target_modification.png)
+
+## Modeling:
+
+I initiually tried a variety of models on both target variable, from basic linear models to KNN, to neural networks to ensemble learning.
+
+![initial_results](initial_results.png)
+
+XGBoost was the best performing model, so I applied a grid search for hyperparameter tuning. The fully tuned models yielded the below scores, with their respective improvements over the baseline. The baseline r2 score for the IMDB votes was a basic linear regression model. And the baseline accuracy for IMDB rating was the frequency of the most frequent class.
+
+![final_results](final_results_xgb.png)
+
+
+## Local Interpretations using Shapley Values:
+
+We can look at one specific example to interpret which features are driving the score. The example I've selected is 'You've Got Mail', the romcom classic. 
+
+![shapley_values](Shapley_values_YGM.png)
+
+We see that the (log value) of the IMDB votes is 11.83, up from the base value of 7.423. Some of the factors driving it up are:
+
+1. Other_Actors : 50 'other actors' indicates it's a big production, which could be a proxy for bigger budget for the cast, for marketing etc. - all of which mean it's more likely to be a popular movie.
+2. Superstars : The feature engineering picks up Tom Hanks as a superstar, though it doesn't recognize Meg Ryan as one (debatable, I would definitely call her one but perhaps she isn't in enough titles available on streaming).
+3. Oscar : Hanks' Oscar win helps predict this will be a popular movie.
 
 
 ## Notebooks:
