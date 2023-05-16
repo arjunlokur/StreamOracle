@@ -34,7 +34,7 @@ a)	I wanted to identify ‘superstars’ because logically, the popularity of a 
 
 b)	Formula for Value: 
 
-![formula](streamlit_visuals_needed/formula.pdf)
+![formula](streamlit_visuals_needed/formula.png)
 
 
 This captures the actors and actresses who’ve been in a lot of movies (that are available on these streaming platforms) and were the most important actors for that movie. It does a reasonable job of capturing superstars. I created cut-off values to classify the actors into 4 different categories with the following count:
@@ -60,7 +60,7 @@ These tell us a lot about what kinds of plots/storylines are the most popular. '
 
 And this word cloud below shows us the most popular genres.
 
-![word_cloud](word_cloud.png)
+![word_cloud](streamlit_visuals_needed/word_cloud.png)
 
 ## Target Variable Modification:
 
@@ -68,7 +68,7 @@ Before we get into the modeling results, there's 2 modifications of the target v
 
 And for the IMDB votes, the original distribution was extremely right-skewed. Due to which I took the natural log tranformation to make it a more normal distribution, which will help at least the linear models.
 
-![target_modification](target_modification.png)
+![target_modification](streamlit_visuals_needed/target_modification.png)
 
 ## Modeling:
 
@@ -78,14 +78,14 @@ I initiually tried a variety of models on both target variable, from basic linea
 
 XGBoost was the best performing model, so I applied a grid search for hyperparameter tuning. The fully tuned models yielded the below scores, with their respective improvements over the baseline. The baseline r2 score for the IMDB votes was a basic linear regression model. And the baseline accuracy for IMDB rating was the frequency of the most frequent class.
 
-![final_results](final_results_xgb.png)
+![final_results](streamlit_visuals_needed/final_results_xgb.png)
 
 
 ## Local Interpretations using Shapley Values:
 
 We can look at one specific example to interpret which features are driving the score. The example I've selected is 'You've Got Mail', the romcom classic. 
 
-![shapley_values](Shapley_values_YGM.png)
+![shapley_values](streamlit_visuals_needed/Shapley_values_YGM.png)
 
 We see that the (log value) of the IMDB votes is 11.83, up from the base value of 7.423. Some of the factors driving it up are:
 
