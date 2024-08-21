@@ -1,6 +1,6 @@
 # StreamOracle
 
-## [Demo](https://arjunlokur-capstone-streamlit-app-u5vk3q.streamlit.app/)
+
 
 
 [![StreamOracle](streamlit_visuals_needed/StreamOracle_logo.png)](https://arjunlokur-capstone-streamlit-app-u5vk3q.streamlit.app/)
