@@ -1,9 +1,7 @@
 # StreamOracle
 
 
-
-
-[![StreamOracle](streamlit_visuals_needed/StreamOracle_logo.png)]
+![StreamOracle](streamlit_visuals_needed/StreamOracle_logo.png)
 
 
 ## Overview:
